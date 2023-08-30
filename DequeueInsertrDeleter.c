@@ -84,4 +84,10 @@ void deleter(){
         rear=front=-1;
         printf("%d is deleted",x);
     }
+  else if(front==0 && rear !=MAX-1){
+        int x=dq[rear];
+        rear--;
+        printf("\n%d is deleted",x);
+        
+    }
 }
