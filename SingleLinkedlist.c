@@ -43,8 +43,9 @@ main()
            case 4:display(); break;
            case 5:deleteFirst(); break;
            case 6:deleteLast(); break;
-           case 7:sizeoflist(); break;
-           case 8:exit(10); 
+           case 7:deleteMiddle(); break;
+           case 8:sizeoflist(); break;
+           case 9:exit(10); 
            
        }
    } 
@@ -133,7 +134,7 @@ void insertMiddle(){
     int count=sizeoflist();
     printf("Enter the position of the element you want to insert:  ");
     scanf("%d",&pos);
-    if(pos<0)
+    if(pos<=0)
     {
         addFirst();
         
@@ -159,6 +160,33 @@ void insertMiddle(){
     
 }
 
+void deleteMiddle(){
+    int pos,count,pos2;
+    node *th, *th2;
+    count=sizeoflist();
+    printf("Enter the position of the node: ");
+    scanf("%d",&pos);
+    if(pos<=0){
+        deleteFirst();
+        return;
+    }
+    else if(pos>=count){
+        deleteLast();
+        return;
+    }
+    th=head;
+    pos2=pos;
+    while(pos>1){
+        th=th->ptr;
+        pos--;
+    }
+    th2=head;
+    while(pos2>=0){
+        th2=th2->ptr;
+        pos2--;
+    }
+    th->ptr=th2;
+}
 
 
 
