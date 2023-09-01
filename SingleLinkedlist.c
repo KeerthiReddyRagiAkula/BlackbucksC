@@ -10,6 +10,10 @@ Code, Compile, Run and Debug online from anywhere in world.
 #include<stdlib.h>
 void addFirst();
 void display();
+void evenNumberCount();
+void oddNumberCount();
+void polindrome();
+
 struct node{
     int info;
     struct node *ptr;
@@ -21,19 +25,21 @@ node* createNode(){
     temp=(node *) malloc(sizeof(node));
     if(temp==NULL){
         printf("Node is not Created");
-        return;
+        
     }
+    else{
     printf("Enter data:");
     scanf("%d",&temp->info);
     temp->ptr=NULL;
     return temp;
+    }
 }
 
-main()
+void main()
 {
-    int ch;
+    int ch,ope;
     while(10){
-        printf("\nEnter \n 1 for addFirst \n 2 for addLast \n 3 for insertmiddle \n 4 for display \n 5 for deletefirst \n 6 fro deletelast\n 7 for size\n 8 for exit ");
+        printf("\nEnter \n 1 for addFirst \n 2 for addLast \n 3 for insertmiddle \n 4 for display \n 5 for reverseData \n 6 for deletefirst \n 7 fro deletelast\n 8 for deletemiddle \n 9 for size\n 10 for extra operations \n 11 for exit ");
         scanf("%d",&ch);
    
        switch(ch){
@@ -41,11 +47,22 @@ main()
            case 2:addLast(); break;
            case 3:insertMiddle(); break;
            case 4:display(); break;
-           case 5:deleteFirst(); break;
-           case 6:deleteLast(); break;
-           case 7:deleteMiddle(); break;
-           case 8:sizeoflist(); break;
-           case 9:exit(10); 
+           case 5:reverseData(head); break;
+           case 6:deleteFirst(); break;
+           case 7:deleteLast(); break;
+           case 8:deleteMiddle(); break;
+           case 9:sizeoflist(); break;
+           case 10: 
+               printf("\n\nEnter \n 1 for polyndrome count \n 2 for even number count \n 3 for odd number count: \n");
+                scanf("%d",&ope);
+                switch(ope){
+                    case 1: polindrome(); break;
+                    case 2: evenNumberCount(); break;
+                    case 3: oddNumberCount(); break;
+                }
+                break;
+                
+           case 11:exit(10); 
            
        }
    } 
@@ -187,6 +204,63 @@ void deleteMiddle(){
     }
     th->ptr=th2;
 }
+void reverseData(node *p){
+    if(p){
+        reverseData(p->ptr);
+        printf("%d",p->info);
+    }
+    
+}
+void evenNumberCount(){
+    
+    int c=0;
+    node *th=head;
+    while(th!=NULL){
+        if((th->info)%2==0){
+            c++;
+        }
+        th=th->ptr;
+    }
+    printf("The count of even numbers is %d",c);
+}
+void oddNumberCount(){
+    int c=0;
+    node *th=head;
+    while(th!=NULL){
+        if(th->info%2!=0){
+            c++;
+        }
+        th=th->ptr;
+    }
+        printf("The count of odd number is %d", c);
+    
+}
+void polindrome(){
+    node *p=head;
+    int rem,rev;
+    int c=0;
+    while(p!=NULL){
+        rev=0;
+        int ori=p->info;
+        int temp=p->info;
+        while(temp!=0){
+            rem=temp%10;
+            rev=rev*10+rem;
+            temp=temp/10;
+        }
+        
+        if(ori == rev){
+            printf("1\n");
+            ++c;
+        }
+        p=p->ptr;
+    }
+    printf("The count of the polyndrome is %d",c);
+    
+}
+
+
+
 
 
 
