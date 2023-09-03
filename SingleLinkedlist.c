@@ -9,10 +9,18 @@ Code, Compile, Run and Debug online from anywhere in world.
 #include <stdio.h>
 #include<stdlib.h>
 void addFirst();
+void addLast();
+void insertMiddle();
 void display();
+void reverseData();
+void deleteFirst();
+void deleteLast();
+void deleteMiddle();
+int sizeofList();
 void evenNumberCount();
 void oddNumberCount();
 void polindrome();
+void findKey();
 
 struct node{
     int info;
@@ -51,14 +59,15 @@ void main()
            case 6:deleteFirst(); break;
            case 7:deleteLast(); break;
            case 8:deleteMiddle(); break;
-           case 9:sizeoflist(); break;
+           case 9:sizeofList(); break;
            case 10: 
-               printf("\n\nEnter \n 1 for polyndrome count \n 2 for even number count \n 3 for odd number count: \n");
+               printf("\n\nEnter \n 1 for polyndrome count \n 2 for even number count \n 3 for odd number count \n 4 for find key:");
                 scanf("%d",&ope);
                 switch(ope){
                     case 1: polindrome(); break;
                     case 2: evenNumberCount(); break;
                     case 3: oddNumberCount(); break;
+                    case 4: findKey(); break;
                 }
                 break;
                 
@@ -132,7 +141,7 @@ node *th;
     }
 }
 
-int sizeoflist(){
+int sizeofList(){
     node *th=head;
     int count=0;
     while(th!=NULL){
@@ -148,7 +157,7 @@ void insertMiddle(){
     node *temp;
  
     node *th=head;
-    int count=sizeoflist();
+    int count=sizeofList();
     printf("Enter the position of the element you want to insert:  ");
     scanf("%d",&pos);
     if(pos<=0)
@@ -180,7 +189,7 @@ void insertMiddle(){
 void deleteMiddle(){
     int pos,count,pos2;
     node *th, *th2;
-    count=sizeoflist();
+    count=sizeofList();
     printf("Enter the position of the node: ");
     scanf("%d",&pos);
     if(pos<=0){
@@ -257,6 +266,22 @@ void polindrome(){
     }
     printf("The count of the polyndrome is %d",c);
     
+}
+void findKey(){
+    int key;
+    printf("Enter the key value: ");
+    scanf("%d",&key);
+    node *th=head;
+    while(th!=NULL){
+        if(th->info==key){
+            printf("%d is present in the list",key);
+            return;
+        }
+        else{
+            printf("%d is not present in the list",key);
+        }
+        th=th->ptr;
+    }
 }
 
 
